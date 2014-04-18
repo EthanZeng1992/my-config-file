@@ -1,0 +1,107 @@
+#/etc/vim/vimrc
+
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+
+Bundle 'ctrlp.vim'
+Bundle 'ctags.vim' 
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-surround'
+Bundle 'xml.vim'
+Bundle 'delimitMate.vim'
+Bundle 'snipMate'
+Bundle 'rails.vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/syntastic'
+Bundle 'myusuf3/numbers.vim'
+Bundle 'neocomplcache'
+Bundle 'PIV'
+Bundle 'Tagbar'
+Bundle 'slim-template/vim-slim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'bling/vim-bufferline'
+
+filetype plugin indent on     " required!
+
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
+
+set number          " 显示行号  
+
+syntax enable          " 语法高亮 
+syntax on 
+
+set showcmd         " 输入的命令显示出来
+
+set background=dark "背景使用黑色 
+colorscheme solarized  "设置配色方案
+
+set tabstop=2        " Tab键的宽度
+set softtabstop=2    " 统一缩进为2
+set shiftwidth=2
+
+set hlsearch        "搜索逐字符高亮
+set incsearch
+
+set ic              "自动补齐时，不管大小写都显示出来
+
+set encoding=utf-8  " 显示中文帮助
+set fileencodings=ucs-bom,utf-8,chinese,latin1 
+set ambiwidth=double 
+set formatoptions+=mM 
+
+"ctrl n nerdtree； 
+map <C-n> :NERDTreeToggle<CR>
+
+"ctrl p 配置
+noremap <C-W><C-U> :CtrlPMRU<CR> 
+nnoremap <C-W>u :CtrlPMRU<CR>
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$'
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=15
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+
+"nerdcommenter <leader>--> ,
+:let mapleader= ","
+
+"syntastic 在打开文件的时候检查
+let g:syntastic_check_on_open=1
+"Open and close error list console automatically
+let g:syntastic_auto_loc_list=1
+let g:syntastic_phpcs_conf = "--tab-width=2 --standard=CodeIgniter"
+let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+
+"neocomplcache enabled
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_auto_select = 1
+
+"tagbar --map
+nmap tt :TagbarToggle<CR>
+
+"powerline
+let g:airline_powerline_fonts = 1
+let g:Powerline_symbols = 'fancy'
+set laststatus=2
+set noshowmode
+set t_Co=256
+
+"解决tmux下面vim 配色
+set term=screen-256color
+
+"自动检查拼写&折行
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
+"tab to space
+set expandtab
